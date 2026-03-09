@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"labels","Source":"git::https://github.com/terraform-do-modules/terraform-digitalocean-labels.git","Dir":".terraform/modules/labels"}]}
