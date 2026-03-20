@@ -1,0 +1,10 @@
+name: checkov
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  checkov:
+    uses: clouddrove/github-shared-workflows/.github/workflows/security-checkov.yml@master
+    secrets: inherit
