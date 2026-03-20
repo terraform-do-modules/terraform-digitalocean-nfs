@@ -6,4 +6,8 @@ terraform {
       version = ">= 2.70.0"
     }
   }
+
+  provider_meta "digitalocean" {
+    module_name = "terraform-do-modules/terraform-digitalocean-nfs"
+  }
 }
