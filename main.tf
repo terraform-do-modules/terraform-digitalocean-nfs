@@ -1,16 +1,23 @@
+##-----------------------------------------------------------------------------
+## Labels module used for naming and tags.
+##-----------------------------------------------------------------------------
 module "labels" {
-  source      = "git::https://github.com/terraform-do-modules/terraform-digitalocean-labels.git"
+  source      = "terraform-do-modules/labels/digitalocean"
+  version     = "1.0.6"
   name        = var.name
   environment = var.environment
-  label_order = var.label_order
   managedby   = var.managedby
+  label_order = var.label_order
 }
 
 locals {
   do_tags = [for k, v in var.extra_tags : "${k}:${v}"]
 }
 
-resource "digitalocean_nfs" "this" {
+##-----------------------------------------------------------------------------
+## Create DigitalOcean NFS.
+##-----------------------------------------------------------------------------
+resource "digitalocean_nfs" "main" {
   count            = var.enabled ? 1 : 0
   region           = var.region
   name             = module.labels.id
@@ -20,22 +27,31 @@ resource "digitalocean_nfs" "this" {
   tags             = local.do_tags
 }
 
-resource "digitalocean_nfs_attachment" "this" {
+##-----------------------------------------------------------------------------
+## Attach DigitalOcean NFS to VPC.
+##-----------------------------------------------------------------------------
+resource "digitalocean_nfs_attachment" "main" {
   count    = var.enabled && var.enable_attachment ? 1 : 0
   region   = var.region
-  share_id = digitalocean_nfs.this[0].id
+  share_id = digitalocean_nfs.main[0].id
   vpc_id   = var.attachment_vpc_id
 }
 
-resource "digitalocean_nfs_snapshot" "this" {
+##-----------------------------------------------------------------------------
+## Create snapshot for DigitalOcean NFS.
+##-----------------------------------------------------------------------------
+resource "digitalocean_nfs_snapshot" "main" {
   count    = var.enabled && var.enable_snapshot ? 1 : 0
   name     = "${module.labels.id}-snapshot"
   region   = var.region
-  share_id = digitalocean_nfs.this[0].id
+  share_id = digitalocean_nfs.main[0].id
 }
 
-data "digitalocean_nfs" "this" {
+##-----------------------------------------------------------------------------
+## Fetch DigitalOcean NFS details.
+##-----------------------------------------------------------------------------
+data "digitalocean_nfs" "main" {
   count  = var.enabled ? 1 : 0
-  name   = digitalocean_nfs.this[0].name
-  region = digitalocean_nfs.this[0].region
+  name   = digitalocean_nfs.main[0].name
+  region = digitalocean_nfs.main[0].region
 }
