@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  complete-example:
+  basic-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@v2
     with:
       working_directory: './examples/basic/'
