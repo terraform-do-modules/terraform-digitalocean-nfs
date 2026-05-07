@@ -1,0 +1,15 @@
+name: Module Test Harness
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  basic-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/stf-checks.yml@d27d2d3b49bcf14db85bdfb0f57956abf18bb091
+    with:
+      provider: digitalocean
+      working_directory: ./examples/basic/

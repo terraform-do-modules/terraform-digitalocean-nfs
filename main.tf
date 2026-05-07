@@ -1,9 +1,10 @@
 module "labels" {
-  source      = "git::https://github.com/terraform-do-modules/terraform-digitalocean-labels.git"
+  source      = "terraform-do-modules/labels/digitalocean"
+  version     = "1.0.0"
   name        = var.name
   environment = var.environment
-  label_order = var.label_order
   managedby   = var.managedby
+  label_order = var.label_order
 }
 
 locals {

@@ -1,0 +1,64 @@
+name: Terraform DigitalOcean NFS
+
+intro: |-
+  Streamline operations, automate workflows, improve team collaboration, and deploy with confidence using our complete DevOps toolkit.
+
+badges_text: "Latest Release | tfsec | License | Changelog"
+
+about: |-
+  Terraform module to create and manage NFS shares with attachment on Digital Ocean.
+
+license: "APACHE"
+
+github_repo: terraform-do-modules/terraform-digitalocean-nfs
+
+badges:
+  - name: "Terraform"
+    image: "https://img.shields.io/badge/Terraform-v1.6-green"
+    url: "https://www.terraform.io"
+
+  - name: "OpenTofu"
+    image: "https://img.shields.io/badge/OpenTofu-v1.6-purple"
+    url: "https://opentofu.org"
+
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
+    url: "LICENSE.md"
+
+prerequesties:
+  - name: Terraform >= 1.6.0
+    url: https://developer.hashicorp.com/terraform/install
+  - name: OpenTofu >= 1.6.0
+    url: https://opentofu.org/docs/intro/install/
+
+description: |-
+  Terraform module to create and manage NFS shares with attachment on Digital Ocean.
+
+usage : |-
+  ### Simple Example
+  Here is an example of how you can use this module in your inventory structure:
+  ```hcl
+  module "nfs" {
+  source = "terraform-do-modules/nfs/digitalocean"
+  name             = "app"
+  environment      = "dev"
+  region           = "blr1"
+  size             = 50
+  vpc_id           = "vpc-xxxx"
+  performance_tier = "high"
+}
+  ```
+
+  ### Deploy with Terraform
+  ```bash
+  terraform init
+  terraform plan
+  terraform apply
+  ```
+
+  ### Deploy with OpenTofu
+  ```bash
+  tofu init
+  tofu plan
+  tofu apply
+  ```
