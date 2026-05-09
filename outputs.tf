@@ -13,4 +13,7 @@ output "snapshot_id" {
   description = "Output value for snapshot_id."
   value       = try(digitalocean_nfs_snapshot.this[0].id, null)
 }
-output "attachment_id" { value = try(digitalocean_nfs_attachment.this[0].id, null) }
+output "attachment_id" {
+  description = "The ID of the NFS attachment."
+  value       = try(digitalocean_nfs_attachment.this[0].id, null)
+}
