@@ -39,7 +39,8 @@ usage : |-
   Here is an example of how you can use this module in your inventory structure:
   ```hcl
     module "nfs" {
-      source           = "git::https://github.com/terraform-do-modules/terraform-digitalocean-nfs.git?ref=v1.0.3"
+      source           = "terraform-do-modules/nfs/digitalocean"
+      version          = "1.0.3"
       name             = "app"
       environment      = "dev"
       region           = "nyc1"
